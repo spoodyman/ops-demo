@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: bump-podinfo-to-670
+  namespace: tekton-pipelines
+spec:
+  pipelineRef:
+    name: gitops-image-bump
+  taskRunTemplate:
+    serviceAccountName: pipeline-runner
+  params:
+    - name: repo-url
+      value: https://github.com/spoodyman/ops-demo.git
+    - name: new-tag
+      value: "6.7.0"
+  workspaces:
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes: [ ReadWriteOnce ]
+          resources:
+            requests:
+              storage: 1Gi
+    - name: git-credentials
+      secret:
+        secretName: git-credentials
