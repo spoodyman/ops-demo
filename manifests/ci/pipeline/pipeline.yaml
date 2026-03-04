@@ -18,14 +18,6 @@ spec:
       type: string
       description: New podinfo image tag to set (e.g. 6.7.0)
       default: "6.7.0"
-    - name: git-user-name
-      type: string
-      description: Git author name for the bump commit
-      default: "Workshop Pipeline"
-    - name: git-user-email
-      type: string
-      description: Git author email for the bump commit
-      default: "pipeline@workshop.local"
 
   workspaces:
     - name: source
